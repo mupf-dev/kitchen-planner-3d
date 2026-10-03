@@ -1,0 +1,21 @@
+# Küchenplaner mit Docker Compose
+#   docker compose up -d --build
+# Web-App: http://<server>:3010
+services:
+  kuechenplaner:
+    build: .
+    image: kuechenplaner:latest
+    container_name: kuechenplaner
+    restart: unless-stopped
+    ports:
+      - "3010:3000"
+    environment:
+      TZ: Europe/Berlin
+      # Hinter einem Reverse Proxy mit HTTPS einschalten (echte Client-IP, Secure-Cookie):
+      # TRUST_PROXY: "1"
+      # COOKIE_SECURE: "1"
+    volumes:
+      - kuechenplaner-data:/data
+
+volumes:
+  kuechenplaner-data:

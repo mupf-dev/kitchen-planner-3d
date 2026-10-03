@@ -1,0 +1,11 @@
+# Nie ins Image: Daten, private Projekte, Build-Artefakte
+node_modules/
+dist/
+data/
+projekte-privat/
+.git/
+*.db
+*.db-*
+Dockerfile
+docker-compose*.yml
+.dockerignore
