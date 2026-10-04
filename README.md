@@ -15,7 +15,7 @@ Selbst gehostet, mit Konten und Showroom-Links zum Teilen.
 
 **[▶ Live-Demo ausprobieren](https://kuechenplaner.miefda.org/)**
 
-[Funktionen](#funktionen) · [Installation](#installation) · [Anleitung](#anleitung) · [Betrieb](#betrieb) · [Entwicklung](#entwicklung)
+[Funktionen](#funktionen) · [Eine echte Küche](#eine-echte-küche) · [Installation](#installation) · [Anleitung](#anleitung) · [Betrieb](#betrieb) · [Entwicklung](#entwicklung)
 
 <img src="site/img/showroom.webp" alt="Showroom-Ansicht einer Küche in Salbeigrün mit Kochinsel, Hängeleuchten und Holzboden" width="900">
 
@@ -79,6 +79,23 @@ Selbst gehostet, mit Konten und Showroom-Links zum Teilen.
 - **Planungen im Konto** speichern, öffnen, umbenennen, kopieren, löschen
 - **Showroom-Link**: Planung zum Ansehen ohne Anmeldung teilen (nur lesend, jederzeit deaktivierbar)
 - Ohne Anmeldung funktioniert der Planer weiter – gespeichert wird dann im Browser
+
+## Eine echte Küche
+
+Die Planungs-Engine dieses Küchenplaners steckt heute im Hausplaner von [Zuhause](https://github.com/mupf-dev/Homemgmt).
+Dort ist eine echte Küche damit geplant – grifflose Hochschränke mit Durchgang in Schrankoptik, Steinarbeitsplatte mit
+Unterbauspüle und Kochinsel (Bilder aus Zuhause):
+
+<table>
+<tr>
+<td width="50%"><img src="site/img/praxis-kueche.webp" alt="Blick in die Küche: grifflose Hochschränke, dunkle Arbeitsplatte mit Unterbauspüle, Holzboden"></td>
+<td width="50%"><img src="site/img/praxis-eg-3d.webp" alt="Das Erdgeschoss als 3D-Schnitt mit Küchenzeile, Kochinsel, Treppe und Wohnbereich"></td>
+</tr>
+<tr>
+<td><b>Küche:</b> grifflose Fronten, Durchgang zur Technik in Schrankoptik.</td>
+<td><b>Im Haus:</b> Küchenzeile und Kochinsel im offenen Erdgeschoss.</td>
+</tr>
+</table>
 
 ## Installation
 
