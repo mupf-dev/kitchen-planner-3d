@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Küchenplaner 3D – Küche planen im Browser</title>
+<meta name="description" content="Vom Grundriss zur fotorealistischen Küche – direkt im Browser. 2D-Grundriss, Schrankkatalog, Materialbibliothek, Echtzeit-3D und Pathtracing. Selbst gehostet, Open Source.">
+<meta property="og:title" content="Küchenplaner 3D – Küche planen im Browser">
+<meta property="og:description" content="Vom Grundriss zur fotorealistischen Küche – direkt im Browser.">
+<meta property="og:image" content="img/showroom.webp">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E0662D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='16' rx='2'/><path d='M3 10h18M8 14h.01M12 14h4'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf8f5; --bg-alt: #f2eee8; --card: #ffffff; --text: #1f1d1a; --muted: #6b655d; --line: #e5dfd6;
+  --accent: #e0662d; --accent-ink: #b84a17; --accent-soft: #fbe6da; --code-bg: #1f1d1a; --code-text: #f4efe8;
+  --shadow: 0 1px 2px rgba(40,30,20,.06), 0 8px 30px rgba(40,30,20,.08);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #181716; --bg-alt: #1f1e1c; --card: #242320; --text: #f1ede7; --muted: #a59e94; --line: #34322e;
+    --accent: #f07a3f; --accent-ink: #ff9a66; --accent-soft: #3a2619; --code-bg: #0f0e0d; --code-text: #f4efe8;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 30px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #181716; --bg-alt: #1f1e1c; --card: #242320; --text: #f1ede7; --muted: #a59e94; --line: #34322e;
+  --accent: #f07a3f; --accent-ink: #ff9a66; --accent-soft: #3a2619; --code-bg: #0f0e0d; --code-text: #f4efe8;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 30px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; height: auto; display: block; }
+.install > *, .feature > * { min-width: 0; }
+a { color: var(--accent-ink); }
+code, pre { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .88em; }
+:not(pre) > code { background: var(--accent-soft); color: var(--accent-ink); padding: .1em .4em; border-radius: 5px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 720px) { .wrap { padding: 0 32px; } }
+
+/* Kopf */
+header.top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+header.top .wrap { display: flex; align-items: center; gap: 24px; height: 60px; }
+.brand { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; }
+.brand svg { width: 22px; height: 22px; color: var(--accent); }
+nav.links { display: none; gap: 22px; margin-left: auto; }
+nav.links a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: 15px; }
+nav.links a:hover { color: var(--text); }
+.gh { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border: 1px solid var(--line); border-radius: 9px; color: var(--text); text-decoration: none; font-weight: 600; font-size: 14px; background: var(--card); }
+.gh svg { width: 17px; height: 17px; }
+@media (min-width: 860px) { nav.links { display: flex; } .gh { margin-left: 0; } }
+
+/* Hero */
+.hero { padding: 64px 0 40px; text-align: center; }
+.eyebrow { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: .02em; color: var(--accent-ink); background: var(--accent-soft); padding: 5px 12px; border-radius: 99px; margin-bottom: 20px; }
+h1 { font-size: clamp(34px, 6vw, 60px); line-height: 1.08; letter-spacing: -.03em; margin: 0 auto 18px; max-width: 16ch; font-weight: 800; }
+h1 em { font-style: normal; color: var(--accent); }
+.lead { font-size: clamp(17px, 2.2vw, 20px); color: var(--muted); max-width: 640px; margin: 0 auto 30px; }
+.cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 10px; font-weight: 600; text-decoration: none; font-size: 15px; }
+.btn.primary { background: var(--accent); color: #fff; }
+.btn.primary:hover { filter: brightness(1.07); }
+.btn.ghost { border: 1px solid var(--line); color: var(--text); background: var(--card); }
+.shot { margin: 48px auto 0; border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); max-width: 1040px; background: var(--card); }
+.shot .bar { display: flex; gap: 6px; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.shot .bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+
+/* Abschnitte */
+section { padding: 72px 0; }
+section.alt { background: var(--bg-alt); border-block: 1px solid var(--line); }
+h2 { font-size: clamp(26px, 3.6vw, 36px); letter-spacing: -.02em; line-height: 1.2; margin: 0 0 12px; font-weight: 750; }
+.sub { color: var(--muted); font-size: 17px; max-width: 640px; margin: 0 0 40px; }
+.center { text-align: center; } .center .sub { margin-inline: auto; }
+
+/* So funktioniert's */
+.flow { display: grid; gap: 16px; grid-template-columns: 1fr; counter-reset: s; }
+@media (min-width: 760px) { .flow { grid-template-columns: repeat(4, 1fr); } }
+.flow div { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; counter-increment: s; }
+.flow div::before { content: counter(s); display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-ink); font-weight: 700; font-size: 14px; margin-bottom: 12px; }
+.flow b { display: block; margin-bottom: 4px; }
+.flow span { color: var(--muted); font-size: 15px; }
+.addr { margin-top: 28px; display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 15px; color: var(--muted); }
+.addr code { font-size: 17px; padding: .2em .55em; }
+
+/* Funktions-Zeilen */
+.feature { display: grid; gap: 28px; align-items: center; grid-template-columns: 1fr; margin-bottom: 72px; }
+.feature:last-child { margin-bottom: 0; }
+@media (min-width: 900px) { .feature { grid-template-columns: 5fr 7fr; gap: 56px; } .feature.flip > :first-child { order: 2; } }
+.feature h3 { font-size: 24px; letter-spacing: -.015em; margin: 0 0 10px; }
+.feature p { color: var(--muted); margin: 0 0 16px; }
+.feature ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.feature li { padding-left: 26px; position: relative; font-size: 15px; }
+.feature li::before { content: ""; position: absolute; left: 2px; top: .45em; width: 14px; height: 14px; border-radius: 50%; background: var(--accent-soft); box-shadow: inset 0 0 0 4px var(--accent-soft), inset 0 0 0 7px var(--accent); }
+.feature figure { margin: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--card); }
+.phones { display: flex; gap: 14px; justify-content: center; }
+.phones figure { flex: 1 1 0; max-width: 230px; border-radius: 22px; }
+
+/* Kacheln */
+.grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 980px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+.tile { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
+.tile svg { width: 26px; height: 26px; color: var(--accent); margin-bottom: 12px; }
+.tile h4 { margin: 0 0 6px; font-size: 17px; }
+.tile p { margin: 0; color: var(--muted); font-size: 15px; }
+
+/* Installation */
+.tabs { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+.tabs button { font: inherit; font-weight: 600; font-size: 14px; padding: 8px 16px; border-radius: 9px; border: 1px solid var(--line); background: var(--card); color: var(--muted); cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.panel[hidden] { display: none; }
+pre { background: var(--code-bg); color: var(--code-text); padding: 20px 22px; border-radius: 12px; overflow-x: auto; margin: 0 0 14px; line-height: 1.7; position: relative; }
+pre .c { color: #9a9288; }
+.copy { position: absolute; top: 10px; right: 10px; font: 600 12px Inter, sans-serif; background: rgba(255,255,255,.1); color: var(--code-text); border: 0; border-radius: 6px; padding: 5px 10px; cursor: pointer; }
+.copy:hover { background: rgba(255,255,255,.18); }
+.install { display: grid; gap: 32px; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .install { grid-template-columns: 7fr 5fr; gap: 48px; } }
+.note { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 10px; padding: 16px 18px; font-size: 15px; color: var(--muted); }
+.note b { color: var(--text); }
+.steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 14px; }
+.steps li { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; font-size: 15px; }
+.steps li b { display: block; margin-bottom: 2px; }
+
+footer { padding: 40px 0 56px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; }
+footer a { color: var(--muted); }
+.demo-note { margin-top: 14px; font-size: 14px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 14h.01M12 14h4"/></svg>Küchenplaner 3D</a>
+    <nav class="links">
+      <a href="#so-gehts">So geht's</a>
+      <a href="#funktionen">Funktionen</a>
+      <a href="#installation">Installation</a>
+      <a href="#anleitung">Anleitung</a>
+    </nav>
+    <a class="gh" href="https://github.com/mupf-dev/kitchen-planner-3d"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Im Browser · Selbst gehostet · Open Source</span>
+      <h1>Vom Grundriss zur <em>fotorealistischen Küche.</em></h1>
+      <p class="lead">Wände zeichnen, Schränke andocken, Fronten und Arbeitsplatte wählen – und die Küche sofort in 3D sehen. Mit Pathtracing, Showroom und Links zum Teilen.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://kuechenplaner.miefda.org/">Live-Demo öffnen</a>
+        <a class="btn ghost" href="#installation">Selbst installieren</a>
+      </div>
+      <div class="shot">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <img src="img/showroom.webp" width="1500" height="900" alt="Showroom-Ansicht einer Küche in Salbeigrün mit Kochinsel, Hängeleuchten und Holzboden">
+      </div>
+    </div>
+  </div>
+
+  <section id="so-gehts" class="alt">
+    <div class="wrap center">
+      <h2>In vier Schritten zur Küche</h2>
+      <p class="sub">Ohne Installation ausprobieren: Die Live-Demo startet mit einer fertigen Beispielküche.</p>
+      <div class="flow" style="text-align:left">
+        <div><b>Raum</b><span>Maße eingeben oder einen Grundriss hochladen und nachzeichnen.</span></div>
+        <div><b>Schränke</b><span>Aus dem Katalog setzen – sie docken an Wände und Nachbarn an.</span></div>
+        <div><b>Oberflächen</b><span>Fronten, Arbeitsplatte, Griffe, Boden – oder eigene Texturen.</span></div>
+        <div><b>Ansehen</b><span>Echtzeit-3D, fotorealistisch, Showroom oder Begehen.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="funktionen">
+    <div class="wrap">
+      <div class="feature">
+        <div>
+          <h3>2D und 3D gleichzeitig</h3>
+          <p>In der geteilten Ansicht zeichnest du links den Grundriss, rechts wächst die Küche in 3D mit – jede Änderung sofort sichtbar.</p>
+          <ul>
+            <li>Wände mit Längeneingabe, Winkel- und Endpunktfang</li>
+            <li>Grundriss-Scan als Vorlage mit Maßstab</li>
+            <li>Raum aus Maßen: Rechteck oder L-Form</li>
+          </ul>
+        </div>
+        <figure><img src="img/planer-geteilt.webp" width="1500" height="900" alt="Geteilte Ansicht: Grundriss der Küche links, 3D-Ansicht rechts"></figure>
+      </div>
+
+      <div class="feature flip">
+        <div>
+          <h3>Ein Katalog, der mitdenkt</h3>
+          <p>Unter-, Ober- und Hochschränke, Geräte und Kochinsel. Schränke docken an Wände und Nachbarn an, die Breite ziehst du frei.</p>
+          <ul>
+            <li>Fronten mit Türen, Klappen oder 1–4 Auszügen</li>
+            <li>Grifflos mit Griffmulden, waagerecht oder senkrecht</li>
+            <li>Kochinsel mit Theke, Überständen und Muldenlüfter</li>
+          </ul>
+        </div>
+        <figure><img src="img/katalog.webp" width="1500" height="900" alt="Katalog mit Unterschränken, Spülenschrank, Kochfeldschrank und Kochinsel"></figure>
+      </div>
+
+      <div class="feature">
+        <div>
+          <h3>Materialien wie im Studio</h3>
+          <p>Für jeden Bereich ein Standardmaterial, für einzelne Elemente Ausnahmen. Echte Scans, eigene Farben und eigene Fotos.</p>
+          <ul>
+            <li>Lacke, Holz, Stein, Keramik, Metall, Fliesen</li>
+            <li>Online-Bibliotheken Poly Haven und ambientCG</li>
+            <li>Textur ausrichten und Farbe anpassen</li>
+          </ul>
+        </div>
+        <figure><img src="img/materialien.webp" width="1500" height="900" alt="Materialien je Bereich: Fronten Salbeigrün, Arbeitsplatte Marmor, Griffe Messing, Boden Eichenparkett"></figure>
+      </div>
+
+      <div class="feature flip">
+        <div>
+          <h3>Sehen, wie es wird</h3>
+          <p>Echtzeit-3D mit Schatten und Tageslicht – und auf Knopfdruck fotorealistisch per GPU-Pathtracing. Das Ergebnis speicherst du als Bild.</p>
+          <ul>
+            <li>Tageszeit, Sonne, Himmel und Lampen einstellbar</li>
+            <li>Kamera-Presets und Begehen mit WASD</li>
+            <li>Showroom mit Rundgang und Vollbild</li>
+          </ul>
+        </div>
+        <figure><img src="img/frontal-3d.webp" width="1500" height="900" alt="Frontalansicht in 3D auf Kochinsel, Spüle und Hochschränke"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <h2>Und außerdem</h2>
+      <p class="sub">Was es braucht, um eine Planung zu speichern, zu zeigen und zu betreiben.</p>
+      <div class="grid">
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><h4>Konten</h4><p>Planungen im Konto speichern, öffnen, kopieren. Das erste Konto wird Administrator.</p></div>
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><h4>Showroom-Link</h4><p>Die Küche zum Ansehen teilen – ohne Anmeldung, nur lesend, jederzeit deaktivierbar.</p></div>
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg><h4>Ohne Konto</h4><p>Funktioniert auch ohne Anmeldung: Speichern im Browser, Export und Import als JSON.</p></div>
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><h4>Benutzerverwaltung</h4><p>Registrierung ein/aus, Freigabepflicht für neue Konten, Konten sperren.</p></div>
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M6 7V5h12v2"/></svg><h4>Docker</h4><p>Ein Container mit Node 22, Express und SQLite – hinter jedem Reverse Proxy.</p></div>
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg><h4>Open Source</h4><p>AGPL-3.0: frei nutzbar und veränderbar, Änderungen bleiben offen.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="installation">
+    <div class="wrap">
+      <h2>Installation</h2>
+      <p class="sub">Ein Node-Prozess, eine SQLite-Datei. Oder erst einmal die <a href="https://kuechenplaner.miefda.org/">Live-Demo</a> ausprobieren.</p>
+      <div class="install">
+        <div>
+          <div class="tabs" role="tablist">
+            <button role="tab" aria-selected="true" data-tab="docker">Docker</button>
+            <button role="tab" aria-selected="false" data-tab="node">Node.js</button>
+            <button role="tab" aria-selected="false" data-tab="dev">Entwicklung</button>
+          </div>
+          <div class="panel" data-panel="docker">
+<pre><button class="copy">Kopieren</button><code>git clone https://github.com/mupf-dev/kitchen-planner-3d.git
+cd kitchen-planner-3d
+docker compose up -d --build
+<span class="c"># → http://localhost:3010</span></code></pre>
+          </div>
+          <div class="panel" data-panel="node" hidden>
+<pre><button class="copy">Kopieren</button><code><span class="c"># benötigt Node.js ≥ 22.18</span>
+git clone https://github.com/mupf-dev/kitchen-planner-3d.git
+cd kitchen-planner-3d
+npm install
+npm run build &amp;&amp; npm start
+<span class="c"># → http://localhost:3001</span></code></pre>
+          </div>
+          <div class="panel" data-panel="dev" hidden>
+<pre><button class="copy">Kopieren</button><code>npm install
+npm run dev     <span class="c"># Vite :5173 + API-Server :3001</span>
+npm run build   <span class="c"># Typprüfung und Build nach dist/</span></code></pre>
+          </div>
+          <div class="note"><b>Hinter HTTPS</b> die Variablen <code>TRUST_PROXY=1</code> und <code>COOKIE_SECURE=1</code> setzen. Daten liegen in <code>DATA_DIR</code> (Docker: <code>/data</code>).</div>
+        </div>
+        <ol class="steps">
+          <li><b>Erstes Konto</b>Oben rechts „Anmelden“ → „Registrieren“. Das erste Konto wird Administrator.</li>
+          <li><b>Registrierung steuern</b>In der Benutzerverwaltung Registrierung ein- oder ausschalten und neue Konten freigeben.</li>
+          <li><b>Grafikkarte</b>Für schnelles Pathtracing den Browser auf die dedizierte GPU stellen – der Planer zeigt, wie.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="anleitung" class="alt">
+    <div class="wrap">
+      <h2>Anleitung</h2>
+      <p class="sub">Die wichtigsten Schritte in Kürze.</p>
+      <div class="grid">
+        <div class="tile"><h4>1 · Raum anlegen</h4><p>Reiter <b>Raum</b>: Maße eingeben und <b>Wände erzeugen</b> – oder Wände zeichnen, Türen und Fenster setzen.</p></div>
+        <div class="tile"><h4>2 · Grundriss nachzeichnen</h4><p>Bild hochladen, mit <b>Maßstab</b> an einer bekannten Strecke kalibrieren und die Wände nachzeichnen.</p></div>
+        <div class="tile"><h4>3 · Schränke setzen</h4><p>Reiter <b>Katalog</b>: Element anklicken, in den Grundriss klicken. <code>R</code> dreht, <code>Alt</code> platziert frei.</p></div>
+        <div class="tile"><h4>4 · Oberflächen wählen</h4><p>Reiter <b>Materialien</b>: je Bereich ein Material, eigene Farbe oder Textur hochladen.</p></div>
+        <div class="tile"><h4>5 · Fotorealistisch</h4><p>Oben auf <b>3D</b>, dann <b>Fotorealistisch</b>. Das Bild verfeinert sich – mit <b>Bild</b> speichern.</p></div>
+        <div class="tile"><h4>6 · Teilen</h4><p>Anmelden, Planung speichern und einen <b>Showroom-Link</b> erzeugen – oder als JSON exportieren.</p></div>
+      </div>
+      <p style="margin-top:28px"><a class="btn primary" href="https://kuechenplaner.miefda.org/">Jetzt in der Live-Demo ausprobieren →</a></p>
+      <p class="demo-note">Die Live-Demo läuft auf einem privaten Server. Planungen ohne Anmeldung bleiben nur in deinem Browser.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Küchenplaner 3D · <a href="https://github.com/mupf-dev/kitchen-planner-3d">GitHub</a> · <a href="https://kuechenplaner.miefda.org/">Live-Demo</a> · Lizenz <a href="https://github.com/mupf-dev/kitchen-planner-3d/blob/main/LICENSE">AGPL-3.0</a> · Weiterentwickelt in <a href="https://mupf-dev.github.io/Homemgmt/">Zuhause</a></span>
+    <span>Texturen: <a href="https://polyhaven.com">Poly Haven</a> (CC0) · <a href="https://ambientcg.com">ambientCG</a> · 3D: <a href="https://threejs.org">three.js</a></span>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.tabs button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    document.querySelectorAll('.tabs button').forEach(function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+    document.querySelectorAll('.panel').forEach(function (p) { p.hidden = p.dataset.panel !== b.dataset.tab; });
+  });
+});
+document.querySelectorAll('.copy').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var code = b.parentElement.querySelector('code').innerText.split('\n').filter(function (l) { return !/^\s*#/.test(l); })
+      .map(function (l) { return l.replace(/\s+#.*$/, ''); }).join('\n').trim();
+    navigator.clipboard && navigator.clipboard.writeText(code).then(function () { b.textContent = 'Kopiert ✓'; setTimeout(function () { b.textContent = 'Kopieren'; }, 1600); });
+  });
+});
+</script>
+</body>
+</html>
