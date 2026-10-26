@@ -1,105 +1,108 @@
 <div align="center">
 
-# 🍳 Küchenplaner 3D
+# 🍳 Kitchen Planner 3D
 
-**Vom Grundriss zur fotorealistischen Küche – direkt im Browser.**
+**From floor plan to photorealistic kitchen – right in your browser.**
 
-2D-Grundriss zeichnen, Schränke andocken, Oberflächen wählen und die Küche in Echtzeit-3D oder per Pathtracing ansehen.
-Selbst gehostet, mit Konten und Showroom-Links zum Teilen.
+Draw a 2D floor plan, snap in cabinets, pick surfaces and view the kitchen in real-time 3D or with path tracing.
+Self-hosted, with user accounts and shareable showroom links.
 
 [![Node.js ≥ 22.18](https://img.shields.io/badge/Node.js-%E2%89%A5%2022.18-5FA04E?logo=nodedotjs&logoColor=white)](https://nodejs.org)
-[![Docker](https://img.shields.io/badge/Docker-bereit-2496ED?logo=docker&logoColor=white)](#mit-docker-empfohlen)
-[![Lizenz: AGPL-3.0](https://img.shields.io/badge/Lizenz-AGPL--3.0-blue)](LICENSE)
-[![Live-Demo](https://img.shields.io/badge/Live--Demo-kuechenplaner.miefda.org-E8692E)](https://kuechenplaner.miefda.org/)
+[![Docker](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker&logoColor=white)](#with-docker-recommended)
+[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue)](LICENSE)
+[![Live demo](https://img.shields.io/badge/Live%20demo-kuechenplaner.miefda.org-E8692E)](https://kuechenplaner.miefda.org/)
 [![Website](https://img.shields.io/badge/Website-mupf--dev.github.io-555)](https://mupf-dev.github.io/kitchen-planner-3d/)
 
-**[▶ Live-Demo ausprobieren](https://kuechenplaner.miefda.org/)**
+**[▶ Try the live demo](https://kuechenplaner.miefda.org/)**
 
-[Funktionen](#funktionen) · [Eine echte Küche](#eine-echte-küche) · [Installation](#installation) · [Anleitung](#anleitung) · [Betrieb](#betrieb) · [Entwicklung](#entwicklung)
+[Features](#features) · [A real kitchen](#a-real-kitchen) · [Installation](#installation) · [Guide](#guide) · [Operation](#operation) · [Development](#development)
 
-<img src="site/img/showroom.webp" alt="Showroom-Ansicht einer Küche in Salbeigrün mit Kochinsel, Hängeleuchten und Holzboden" width="900">
+<img src="site/img/showroom.webp" alt="Showroom view of a sage-green kitchen with cooking island, pendant lights and wooden floor" width="900">
 
 </div>
 
 > [!NOTE]
-> Der Küchenplaner lebt als Hausplaner in **[Zuhause](https://github.com/mupf-dev/Homemgmt)** weiter – dort für das
-> ganze Haus und mit Lagerverwaltung, bei der jedes Schrankfach ein Lagerplatz ist. Dieses Repository enthält den
-> eigenständigen Küchenplaner (Stand 1.0.0).
+> The kitchen planner lives on as the house planner in **[Zuhause](https://github.com/mupf-dev/Homemgmt)** – there it
+> covers the whole house and comes with inventory management, where every cabinet compartment is a storage location.
+> This repository contains the standalone kitchen planner (version 1.0.0).
 
-## Funktionen
+> [!IMPORTANT]
+> The user interface is currently in **German**. This guide gives the German labels together with their English meaning.
+
+## Features
 
 <table>
 <tr>
-<td width="50%"><img src="site/img/planer-geteilt.webp" alt="Geteilte Ansicht: 2D-Grundriss links, 3D-Küche rechts"></td>
-<td width="50%"><img src="site/img/frontal-3d.webp" alt="Frontalansicht in 3D auf Kochinsel, Spüle und Hochschränke"></td>
+<td width="50%"><img src="site/img/planer-geteilt.webp" alt="Split view: 2D floor plan on the left, 3D kitchen on the right"></td>
+<td width="50%"><img src="site/img/frontal-3d.webp" alt="Front view in 3D of cooking island, sink and tall cabinets"></td>
 </tr>
 <tr>
-<td><b>2D und 3D gleichzeitig:</b> Jede Änderung im Grundriss erscheint sofort in der 3D-Küche.</td>
-<td><b>Echtzeit-3D:</b> Schatten, Ambient Occlusion, Tageszeit und Licht – oder fotorealistisch per Pathtracing.</td>
+<td><b>2D and 3D side by side:</b> every change in the floor plan shows up instantly in the 3D kitchen.</td>
+<td><b>Real-time 3D:</b> shadows, ambient occlusion, time of day and lighting – or photorealistic via path tracing.</td>
 </tr>
 <tr>
-<td><img src="site/img/katalog.webp" alt="Katalog mit Unterschränken, Spülenschrank, Kochfeldschrank und Kochinsel"></td>
-<td><img src="site/img/materialien.webp" alt="Materialien je Bereich: Fronten, Korpus, Arbeitsplatte, Griffe, Boden, Wände"></td>
+<td><img src="site/img/katalog.webp" alt="Catalog with base cabinets, sink unit, hob unit and cooking island"></td>
+<td><img src="site/img/materialien.webp" alt="Materials per area: fronts, carcass, worktop, handles, floor, walls"></td>
 </tr>
 <tr>
-<td><b>Katalog:</b> Unter-, Ober- und Hochschränke, Geräte, Kochinsel – docken an Wände und Nachbarn an.</td>
-<td><b>Materialien:</b> Je Bereich wählbar, eigene Farben und Texturen, Online-Bibliotheken.</td>
+<td><b>Catalog:</b> base, wall and tall cabinets, appliances, cooking island – they snap to walls and neighbours.</td>
+<td><b>Materials:</b> chosen per area, with custom colours, textures and online libraries.</td>
 </tr>
 </table>
 
-### 📐 Planung
+### 📐 Planning
 
-- **Grundriss-Editor**: Wände mit Längeneingabe, Winkel- und Endpunktfang; Türen und Fenster; Raum aus Maßen
-  (Rechteck, L-Form)
-- **Grundriss als Vorlage**: Scan oder Foto hochladen, Maßstab an einer bekannten Strecke kalibrieren, nachzeichnen
-- **Katalog** mit Unter-, Ober- und Hochschränken, Geräten, Kochinsel, Wangen und senkrechten Griffleisten; Breite frei
-  per Ziehpunkt, Undo/Redo
-- **Grifflose Küche** mit Griffmulden (waagerecht/senkrecht), Fronten mit Türen, Klappen oder 1–4 Auszügen
-- **Kochinsel** mit Spaltenbreiten, Rückseite als Theke oder mit Türen, Überständen und Muldenlüfter
+- **Floor plan editor**: walls with length input, angle and endpoint snapping; doors and windows; room from dimensions
+  (rectangle, L-shape)
+- **Floor plan as template**: upload a scan or photo, calibrate the scale on a known distance, trace it
+- **Catalog** with base, wall and tall cabinets, appliances, cooking island, side panels and vertical grip profiles;
+  width adjustable by drag handle, undo/redo
+- **Handleless kitchens** with grip channels (horizontal/vertical), fronts with doors, flaps or 1–4 drawers
+- **Cooking island** with custom column widths, back side as breakfast bar or with doors, overhangs and downdraft hob
 
-### 🎨 Materialien
+### 🎨 Materials
 
-- **Bibliothek** mit Lacken, Holz, Stein, Keramik, Metall, Fliesen, Böden (Scans von [Poly Haven](https://polyhaven.com), CC0)
-- **Eigene Oberflächen**: Lackfarbe per Farbrad (matt, normal, Hochglanz) oder Foto/Textur hochladen (inkl. Normal- und
-  Roughness-Map)
-- **Online-Bibliothek** [Poly Haven](https://polyhaven.com) und [ambientCG](https://ambientcg.com), Import auf den Server
-- **Textur ausrichten** je Bereich und Element: strecken oder kacheln, Größe, Drehung, Verschiebung
-- **Farbanpassung**: Farbton, Sättigung, Helligkeit, Kontrast, Einfärben, Glanz
+- **Library** with lacquers, wood, stone, ceramic, metal, tiles and floors (scans from [Poly Haven](https://polyhaven.com), CC0)
+- **Custom surfaces**: lacquer colour via colour wheel (matt, satin, high gloss) or upload a photo/texture (including
+  normal and roughness maps)
+- **Online libraries** [Poly Haven](https://polyhaven.com) and [ambientCG](https://ambientcg.com), imported to the server
+- **Texture alignment** per area and element: stretch or tile, size, rotation, offset
+- **Colour adjustment**: hue, saturation, brightness, contrast, recolouring, gloss
 
-### 🖼️ 3D und Präsentation
+### 🖼️ 3D and presentation
 
-- **Echtzeit** mit Schatten, Ambient Occlusion, Tageszeit und Lichtregler (Sonne, Himmel, Lampen, Weichheit)
-- **Fotorealistisch**: GPU-Pathtracing, das Bild verfeinert sich fortlaufend; als PNG speichern
-- **Begehen** mit WASD und Maus, Kamera-Presets (Übersicht, Raumecke, Frontal, Draufsicht)
-- **Showroom**: 3D im Vollformat ohne Bedienleisten, mit Rundgang und Vollbild
+- **Real time** with shadows, ambient occlusion, time of day and lighting controls (sun, sky, lamps, softness)
+- **Photorealistic**: GPU path tracing that refines continuously; save as PNG
+- **Walk-through** with WASD and mouse, camera presets (overview, room corner, front, top)
+- **Showroom**: full-window 3D without toolbars, with guided tour and full screen
 
-### 👥 Konten und Teilen
+### 👥 Accounts and sharing
 
-- **Anmeldung**; das erste Konto wird Administrator. Registrierung ein/aus, Freigabepflicht, Benutzerverwaltung
-- **Planungen im Konto** speichern, öffnen, umbenennen, kopieren, löschen
-- **Showroom-Link**: Planung zum Ansehen ohne Anmeldung teilen (nur lesend, jederzeit deaktivierbar)
-- Ohne Anmeldung funktioniert der Planer weiter – gespeichert wird dann im Browser
+- **Login**; the first account becomes the administrator. Sign-up on/off, approval of new accounts, user management
+- **Plans in your account**: save, open, rename, copy, delete
+- **Showroom link**: share a plan for viewing without login (read-only, revocable at any time)
+- Without logging in the planner still works – plans are then stored in the browser
 
-## Eine echte Küche
+## A real kitchen
 
-Die Planungs-Engine dieses Küchenplaners steckt heute im Hausplaner von [Zuhause](https://github.com/mupf-dev/Homemgmt).
-Dort ist eine echte Küche damit geplant – grifflose Hochschränke mit Durchgang in Schrankoptik, Steinarbeitsplatte mit
-Unterbauspüle und Kochinsel (Bilder aus Zuhause):
+The planning engine of this kitchen planner now powers the house planner in [Zuhause](https://github.com/mupf-dev/Homemgmt).
+A real kitchen was planned with it there – handleless tall cabinets with a pass-through door disguised as a cabinet,
+stone worktop with undermount sink and a cooking island (images from Zuhause):
 
 <table>
 <tr>
-<td width="50%"><img src="site/img/praxis-kueche.webp" alt="Blick in die Küche: grifflose Hochschränke, dunkle Arbeitsplatte mit Unterbauspüle, Holzboden"></td>
-<td width="50%"><img src="site/img/praxis-eg-3d.webp" alt="Das Erdgeschoss als 3D-Schnitt mit Küchenzeile, Kochinsel, Treppe und Wohnbereich"></td>
+<td width="50%"><img src="site/img/praxis-kueche.webp" alt="View into the kitchen: handleless tall cabinets, dark worktop with undermount sink, wooden floor"></td>
+<td width="50%"><img src="site/img/praxis-eg-3d.webp" alt="The ground floor as a 3D cutaway with kitchen run, cooking island, stairs and living area"></td>
 </tr>
 <tr>
-<td><b>Küche:</b> grifflose Fronten, Durchgang zur Technik in Schrankoptik.</td>
-<td><b>Im Haus:</b> Küchenzeile und Kochinsel im offenen Erdgeschoss.</td>
+<td><b>Kitchen:</b> handleless fronts, pass-through to the utility room disguised as a cabinet.</td>
+<td><b>In the house:</b> kitchen run and cooking island in the open-plan ground floor.</td>
 </tr>
 </table>
 
 ## Installation
 
-### Mit Docker (empfohlen)
+### With Docker (recommended)
 
 ```bash
 git clone https://github.com/mupf-dev/kitchen-planner-3d.git
@@ -107,12 +110,12 @@ cd kitchen-planner-3d
 docker compose up -d --build
 ```
 
-Danach läuft der Planer unter **http://localhost:3010**. Die Daten liegen im Volume `kuechenplaner-data` (`/data` im
-Container).
+The planner then runs at **http://localhost:3010**. Data is stored in the volume `kuechenplaner-data` (`/data` inside
+the container).
 
-### Ohne Docker
+### Without Docker
 
-Benötigt **Node.js ≥ 22.18** (eingebautes `node:sqlite`, TypeScript läuft auf dem Server ohne Build).
+Requires **Node.js ≥ 22.18** (built-in `node:sqlite`; the server runs TypeScript without a build step).
 
 ```bash
 git clone https://github.com/mupf-dev/kitchen-planner-3d.git
@@ -121,73 +124,75 @@ npm install
 npm run build && npm start     # → http://localhost:3001
 ```
 
-## Anleitung
+## Guide
 
-1. **Raum anlegen** – im Reiter *Raum* Breite, Tiefe und Höhe eingeben und *Wände erzeugen*, oder mit *Wand zeichnen*
-   selbst zeichnen. Alternativ einen Grundriss als Bild hochladen, mit *Maßstab* kalibrieren und nachzeichnen.
-2. **Türen und Fenster** mit den gleichnamigen Werkzeugen auf eine Wand setzen.
-3. **Schränke setzen** – im Reiter *Katalog* ein Element anklicken und in den Grundriss klicken. Schränke docken an Wände
-   und Nachbarn an; `R` dreht, `Shift`+Klick setzt mehrfach, `Alt` platziert frei. Die Breite änderst du über die
-   seitlichen Ziehpunkte.
-4. **Oberflächen wählen** – im Reiter *Materialien* je Bereich (Fronten, Korpus, Arbeitsplatte, Griffe, Boden …) ein
-   Material wählen. Einzelne Elemente können im Eigenschaftenfeld rechts abweichende Materialien bekommen.
-5. **Ansehen** – oben zwischen *2D*, *Geteilt* und *3D* wechseln. In 3D *Fotorealistisch* einschalten und mit *Bild*
-   speichern, oder *Showroom* für die Präsentation.
-6. **Speichern und teilen** – *Anmelden*, die Planung im Konto speichern und einen Showroom-Link erzeugen. Ohne Konto:
-   *Datei → Als Datei exportieren (.json)*.
+1. **Create the room** – in the *Raum* (Room) tab, enter width, depth and height and click *Wände erzeugen* (create
+   walls), or draw them yourself with *Wand zeichnen* (draw wall). Alternatively upload a floor plan image, calibrate
+   it with *Maßstab* (scale) and trace it.
+2. **Doors and windows** – place them on a wall with the *Tür* (door) and *Fenster* (window) tools.
+3. **Place cabinets** – in the *Katalog* (Catalog) tab, click an element and then click into the floor plan. Cabinets
+   snap to walls and neighbours; `R` rotates, `Shift`+click places several, `Alt` places freely. Change the width with
+   the drag handles on the sides.
+4. **Choose surfaces** – in the *Materialien* (Materials) tab, pick a material per area (fronts, carcass, worktop,
+   handles, floor …). Individual elements can get different materials in the properties panel on the right.
+5. **View** – switch between *2D*, *Geteilt* (split) and *3D* at the top. In 3D, turn on *Fotorealistisch*
+   (photorealistic) and save with *Bild* (image), or use *Showroom* for presentations.
+6. **Save and share** – *Anmelden* (log in), save the plan to your account and create a showroom link. Without an
+   account: *Datei → Als Datei exportieren (.json)* (File → export as file).
 
-**Tastenkürzel:** `Entf` löschen · `R` drehen · `Strg`+`D` duplizieren · `Strg`+`Z` rückgängig · `Esc` Werkzeug beenden ·
-`Alt` beim Ziehen: frei platzieren
+**Keyboard shortcuts:** `Del` delete · `R` rotate · `Ctrl`+`D` duplicate · `Ctrl`+`Z` undo · `Esc` exit tool ·
+`Alt` while dragging: place freely
 
 > [!TIP]
-> Das Pathtracing läuft auf einer dedizierten Grafikkarte um ein Vielfaches schneller. Unter Windows im Browser
-> *Einstellungen → System → Bildschirm → Grafik* die Option *Hohe Leistung* wählen – der Planer zeigt eine Anleitung,
-> wenn er nur die integrierte GPU erkennt.
+> Path tracing runs many times faster on a dedicated graphics card. On Windows, go to *Settings → System → Display →
+> Graphics* and choose *High performance* for your browser – the planner shows instructions when it only detects the
+> integrated GPU.
 
-## Betrieb
+## Operation
 
-| Variable | Standard | Bedeutung |
-|----------|----------|-----------|
-| `PORT` | `3001` (Docker: `3000`, nach außen `3010`) | HTTP-Port |
-| `DATA_DIR` | `data/` (Docker: `/data`) | Datenbank `kuechenplaner.db` und importierte Texturen |
-| `TRUST_PROXY` | – | `1` hinter einem Reverse Proxy (echte Client-IP) |
-| `COOKIE_SECURE` | – | `1` bei HTTPS (Secure-Cookie) |
+| Variable | Default | Meaning |
+|----------|---------|---------|
+| `PORT` | `3001` (Docker: `3000`, exposed as `3010`) | HTTP port |
+| `DATA_DIR` | `data/` (Docker: `/data`) | Database `kuechenplaner.db` and imported textures |
+| `TRUST_PROXY` | – | `1` behind a reverse proxy (real client IP) |
+| `COOKIE_SECURE` | – | `1` with HTTPS (secure cookie) |
 
-**Hinter einem Reverse Proxy** (Caddy, nginx, Traefik, Zoraxy …) mit HTTPS `TRUST_PROXY=1` und `COOKIE_SECURE=1` setzen.
-Den Container kannst du dann ohne Host-Port direkt ins Proxy-Netz hängen (z. B. per `docker-compose.override.yml`).
+**Behind a reverse proxy** (Caddy, nginx, Traefik, Zoraxy …) with HTTPS, set `TRUST_PROXY=1` and `COOKIE_SECURE=1`.
+You can then attach the container directly to the proxy network without a host port (e.g. via a
+`docker-compose.override.yml`).
 
-**Sicherheit:** Passwörter mit scrypt und Salt; Sitzungen als zufälliges Token im HttpOnly-Cookie (30 Tage), in der
-Datenbank nur als SHA-256-Hash.
+**Security:** passwords hashed with scrypt and salt; sessions as a random token in an HttpOnly cookie (30 days), stored
+in the database only as a SHA-256 hash.
 
-## Entwicklung
+## Development
 
 ```bash
 npm install
-npm run dev      # Vite (http://localhost:5173) und API-Server (Port 3001) gemeinsam
-npm run build    # Typprüfung und Build nach dist/
+npm run dev      # Vite (http://localhost:5173) and API server (port 3001) together
+npm run build    # type check and build into dist/
 ```
 
-### Aufbau
+### Structure
 
 ```
-src/plan2d.ts                 2D-Editor: Wände, Türen/Fenster, Grundriss-Vorlage, Maßstab, Platzieren mit Andocken
-src/scene3d.ts                three.js-Szene: Schatten, GTAO, Tageslicht, Begehen, Pathtracer
-src/models.ts                 prozedurale Schrank- und Gerätemodelle
-src/materials.ts, procedural.ts  Materialbibliothek, prozedurale Texturen, eigene Texturen
-src/catalog.ts                Elementkatalog
-src/state.ts                  Projektzustand, Undo/Redo, Autospeichern, JSON-Export
-src/account.ts                Konto, gespeicherte Planungen, Benutzerverwaltung, Showroom-Links
-server/index.ts               Express + node:sqlite: Anmeldung, Planungen, Freigaben
-server/library.ts             Online-Bibliotheken (Poly Haven, ambientCG), Import auf den Server
-site/                         Projekt-Website (GitHub Pages) und Screenshots
+src/plan2d.ts                 2D editor: walls, doors/windows, floor plan template, scale, placement with snapping
+src/scene3d.ts                three.js scene: shadows, GTAO, daylight, walk-through, path tracer
+src/models.ts                 procedural cabinet and appliance models
+src/materials.ts, procedural.ts  material library, procedural textures, custom textures
+src/catalog.ts                element catalog
+src/state.ts                  project state, undo/redo, autosave, JSON export
+src/account.ts                account, saved plans, user management, showroom links
+server/index.ts               Express + node:sqlite: login, plans, sharing
+server/library.ts             online libraries (Poly Haven, ambientCG), import to the server
+site/                         project website (GitHub Pages) and screenshots
 ```
 
-**Technik:** TypeScript, Vite, [three.js](https://threejs.org),
-[three-gpu-pathtracer](https://github.com/gkjohnson/three-gpu-pathtracer), Express 5, eingebautes `node:sqlite`.
+**Tech stack:** TypeScript, Vite, [three.js](https://threejs.org),
+[three-gpu-pathtracer](https://github.com/gkjohnson/three-gpu-pathtracer), Express 5, built-in `node:sqlite`.
 
-## Lizenz
+## License
 
-[GNU Affero General Public License v3.0](LICENSE). Du darfst den Küchenplaner nutzen, verändern und weitergeben. Wer eine
-veränderte Fassung weitergibt oder als Online-Dienst anbietet, muss den Quellcode unter derselben Lizenz offenlegen.
+[GNU Affero General Public License v3.0](LICENSE). You may use, modify and redistribute the kitchen planner. Anyone who
+distributes a modified version or offers it as an online service must publish the source code under the same license.
 
-Bodentexturen von [Poly Haven](https://polyhaven.com) (CC0), siehe [public/textures/LIZENZ.txt](public/textures/LIZENZ.txt).
+Floor textures from [Poly Haven](https://polyhaven.com) (CC0), see [public/textures/LICENSE.txt](public/textures/LICENSE.txt).

@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Küchenplaner 3D – Küche planen im Browser</title>
-<meta name="description" content="Vom Grundriss zur fotorealistischen Küche – direkt im Browser. 2D-Grundriss, Schrankkatalog, Materialbibliothek, Echtzeit-3D und Pathtracing. Selbst gehostet, Open Source.">
-<meta property="og:title" content="Küchenplaner 3D – Küche planen im Browser">
-<meta property="og:description" content="Vom Grundriss zur fotorealistischen Küche – direkt im Browser.">
+<title>Kitchen Planner 3D – Plan your kitchen in the browser</title>
+<meta name="description" content="From floor plan to photorealistic kitchen – right in your browser. 2D floor plan, cabinet catalog, material library, real-time 3D and path tracing. Self-hosted, open source.">
+<meta property="og:title" content="Kitchen Planner 3D – Plan your kitchen in the browser">
+<meta property="og:description" content="From floor plan to photorealistic kitchen – right in your browser.">
 <meta property="og:image" content="img/showroom.webp">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E0662D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='16' rx='2'/><path d='M3 10h18M8 14h.01M12 14h4'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +44,7 @@ code, pre { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .
 .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
 @media (min-width: 720px) { .wrap { padding: 0 32px; } }
 
-/* Kopf */
+/* Header */
 header.top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 header.top .wrap { display: flex; align-items: center; gap: 24px; height: 60px; }
 .brand { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; }
@@ -71,14 +71,14 @@ h1 em { font-style: normal; color: var(--accent); }
 .shot .bar { display: flex; gap: 6px; padding: 10px 14px; border-bottom: 1px solid var(--line); }
 .shot .bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
 
-/* Abschnitte */
+/* Sections */
 section { padding: 72px 0; }
 section.alt { background: var(--bg-alt); border-block: 1px solid var(--line); }
 h2 { font-size: clamp(26px, 3.6vw, 36px); letter-spacing: -.02em; line-height: 1.2; margin: 0 0 12px; font-weight: 750; }
 .sub { color: var(--muted); font-size: 17px; max-width: 640px; margin: 0 0 40px; }
 .center { text-align: center; } .center .sub { margin-inline: auto; }
 
-/* So funktioniert's */
+/* How it works */
 .flow { display: grid; gap: 16px; grid-template-columns: 1fr; counter-reset: s; }
 @media (min-width: 760px) { .flow { grid-template-columns: repeat(4, 1fr); } }
 .flow div { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; counter-increment: s; }
@@ -88,7 +88,7 @@ h2 { font-size: clamp(26px, 3.6vw, 36px); letter-spacing: -.02em; line-height: 1
 .addr { margin-top: 28px; display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 15px; color: var(--muted); }
 .addr code { font-size: 17px; padding: .2em .55em; }
 
-/* Funktions-Zeilen */
+/* Feature rows */
 .feature { display: grid; gap: 28px; align-items: center; grid-template-columns: 1fr; margin-bottom: 72px; }
 .feature:last-child { margin-bottom: 0; }
 @media (min-width: 900px) { .feature { grid-template-columns: 5fr 7fr; gap: 56px; } .feature.flip > :first-child { order: 2; } }
@@ -101,7 +101,7 @@ h2 { font-size: clamp(26px, 3.6vw, 36px); letter-spacing: -.02em; line-height: 1
 .phones { display: flex; gap: 14px; justify-content: center; }
 .phones figure { flex: 1 1 0; max-width: 230px; border-radius: 22px; }
 
-/* Kacheln */
+/* Tiles */
 .grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
 @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 980px) { .grid { grid-template-columns: repeat(3, 1fr); } }
@@ -142,13 +142,13 @@ footer a { color: var(--muted); }
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 14h.01M12 14h4"/></svg>Küchenplaner 3D</a>
+    <a class="brand" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 14h.01M12 14h4"/></svg>Kitchen Planner 3D</a>
     <nav class="links">
-      <a href="#so-gehts">So geht's</a>
-      <a href="#funktionen">Funktionen</a>
-      <a href="#echte-kueche">Echte Küche</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#real-kitchen">Real kitchen</a>
       <a href="#installation">Installation</a>
-      <a href="#anleitung">Anleitung</a>
+      <a href="#guide">Guide</a>
     </nav>
     <a class="gh" href="https://github.com/mupf-dev/kitchen-planner-3d"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
   </div>
@@ -157,111 +157,111 @@ footer a { color: var(--muted); }
 <main>
   <div class="hero">
     <div class="wrap">
-      <span class="eyebrow">Im Browser · Selbst gehostet · Open Source</span>
-      <h1>Vom Grundriss zur <em>fotorealistischen Küche.</em></h1>
-      <p class="lead">Wände zeichnen, Schränke andocken, Fronten und Arbeitsplatte wählen – und die Küche sofort in 3D sehen. Mit Pathtracing, Showroom und Links zum Teilen.</p>
+      <span class="eyebrow">In the browser · Self-hosted · Open source</span>
+      <h1>From floor plan to <em>photorealistic kitchen.</em></h1>
+      <p class="lead">Draw walls, snap in cabinets, pick fronts and worktop – and see your kitchen in 3D instantly. With path tracing, a showroom mode and shareable links.</p>
       <div class="cta">
-        <a class="btn primary" href="https://kuechenplaner.miefda.org/">Live-Demo öffnen</a>
-        <a class="btn ghost" href="#installation">Selbst installieren</a>
+        <a class="btn primary" href="https://kuechenplaner.miefda.org/">Open live demo</a>
+        <a class="btn ghost" href="#installation">Self-host it</a>
       </div>
       <div class="shot">
         <div class="bar"><i></i><i></i><i></i></div>
-        <img src="img/showroom.webp" width="1500" height="900" alt="Showroom-Ansicht einer Küche in Salbeigrün mit Kochinsel, Hängeleuchten und Holzboden">
+        <img src="img/showroom.webp" width="1500" height="900" alt="Showroom view of a sage-green kitchen with cooking island, pendant lights and wooden floor">
       </div>
     </div>
   </div>
 
-  <section id="so-gehts" class="alt">
+  <section id="how-it-works" class="alt">
     <div class="wrap center">
-      <h2>In vier Schritten zur Küche</h2>
-      <p class="sub">Ohne Installation ausprobieren: Die Live-Demo startet mit einer fertigen Beispielküche.</p>
+      <h2>Your kitchen in four steps</h2>
+      <p class="sub">Try it without installing anything: the live demo starts with a ready-made sample kitchen.</p>
       <div class="flow" style="text-align:left">
-        <div><b>Raum</b><span>Maße eingeben oder einen Grundriss hochladen und nachzeichnen.</span></div>
-        <div><b>Schränke</b><span>Aus dem Katalog setzen – sie docken an Wände und Nachbarn an.</span></div>
-        <div><b>Oberflächen</b><span>Fronten, Arbeitsplatte, Griffe, Boden – oder eigene Texturen.</span></div>
-        <div><b>Ansehen</b><span>Echtzeit-3D, fotorealistisch, Showroom oder Begehen.</span></div>
+        <div><b>Room</b><span>Enter dimensions, or upload a floor plan and trace it.</span></div>
+        <div><b>Cabinets</b><span>Place them from the catalog – they snap to walls and neighbours.</span></div>
+        <div><b>Surfaces</b><span>Fronts, worktop, handles, floor – or your own textures.</span></div>
+        <div><b>View</b><span>Real-time 3D, photorealistic, showroom or walk-through.</span></div>
       </div>
     </div>
   </section>
 
-  <section id="funktionen">
+  <section id="features">
     <div class="wrap">
       <div class="feature">
         <div>
-          <h3>2D und 3D gleichzeitig</h3>
-          <p>In der geteilten Ansicht zeichnest du links den Grundriss, rechts wächst die Küche in 3D mit – jede Änderung sofort sichtbar.</p>
+          <h3>2D and 3D side by side</h3>
+          <p>In split view you draw the floor plan on the left while the kitchen grows in 3D on the right – every change is visible immediately.</p>
           <ul>
-            <li>Wände mit Längeneingabe, Winkel- und Endpunktfang</li>
-            <li>Grundriss-Scan als Vorlage mit Maßstab</li>
-            <li>Raum aus Maßen: Rechteck oder L-Form</li>
+            <li>Walls with length input, angle and endpoint snapping</li>
+            <li>Floor plan scan as a scaled template</li>
+            <li>Room from dimensions: rectangle or L-shape</li>
           </ul>
         </div>
-        <figure><img src="img/planer-geteilt.webp" width="1500" height="900" alt="Geteilte Ansicht: Grundriss der Küche links, 3D-Ansicht rechts"></figure>
+        <figure><img src="img/planer-geteilt.webp" width="1500" height="900" alt="Split view: kitchen floor plan on the left, 3D view on the right"></figure>
       </div>
 
       <div class="feature flip">
         <div>
-          <h3>Ein Katalog, der mitdenkt</h3>
-          <p>Unter-, Ober- und Hochschränke, Geräte und Kochinsel. Schränke docken an Wände und Nachbarn an, die Breite ziehst du frei.</p>
+          <h3>A catalog that thinks along</h3>
+          <p>Base, wall and tall cabinets, appliances and a cooking island. Cabinets snap to walls and neighbours; drag the width to any size.</p>
           <ul>
-            <li>Fronten mit Türen, Klappen oder 1–4 Auszügen</li>
-            <li>Grifflos mit Griffmulden, waagerecht oder senkrecht</li>
-            <li>Kochinsel mit Theke, Überständen und Muldenlüfter</li>
+            <li>Fronts with doors, flaps or 1–4 drawers</li>
+            <li>Handleless with grip channels, horizontal or vertical</li>
+            <li>Cooking island with breakfast bar, overhangs and downdraft hob</li>
           </ul>
         </div>
-        <figure><img src="img/katalog.webp" width="1500" height="900" alt="Katalog mit Unterschränken, Spülenschrank, Kochfeldschrank und Kochinsel"></figure>
+        <figure><img src="img/katalog.webp" width="1500" height="900" alt="Catalog with base cabinets, sink unit, hob unit and cooking island"></figure>
       </div>
 
       <div class="feature">
         <div>
-          <h3>Materialien wie im Studio</h3>
-          <p>Für jeden Bereich ein Standardmaterial, für einzelne Elemente Ausnahmen. Echte Scans, eigene Farben und eigene Fotos.</p>
+          <h3>Materials like in the showroom</h3>
+          <p>A default material for each area, exceptions for individual elements. Real scans, custom colours and your own photos.</p>
           <ul>
-            <li>Lacke, Holz, Stein, Keramik, Metall, Fliesen</li>
-            <li>Online-Bibliotheken Poly Haven und ambientCG</li>
-            <li>Textur ausrichten und Farbe anpassen</li>
+            <li>Lacquers, wood, stone, ceramic, metal, tiles</li>
+            <li>Online libraries Poly Haven and ambientCG</li>
+            <li>Align textures and adjust colours</li>
           </ul>
         </div>
-        <figure><img src="img/materialien.webp" width="1500" height="900" alt="Materialien je Bereich: Fronten Salbeigrün, Arbeitsplatte Marmor, Griffe Messing, Boden Eichenparkett"></figure>
+        <figure><img src="img/materialien.webp" width="1500" height="900" alt="Materials per area: sage-green fronts, marble worktop, brass handles, oak parquet floor"></figure>
       </div>
 
       <div class="feature flip">
         <div>
-          <h3>Sehen, wie es wird</h3>
-          <p>Echtzeit-3D mit Schatten und Tageslicht – und auf Knopfdruck fotorealistisch per GPU-Pathtracing. Das Ergebnis speicherst du als Bild.</p>
+          <h3>See how it will look</h3>
+          <p>Real-time 3D with shadows and daylight – and photorealistic GPU path tracing at the push of a button. Save the result as an image.</p>
           <ul>
-            <li>Tageszeit, Sonne, Himmel und Lampen einstellbar</li>
-            <li>Kamera-Presets und Begehen mit WASD</li>
-            <li>Showroom mit Rundgang und Vollbild</li>
+            <li>Adjustable time of day, sun, sky and lamps</li>
+            <li>Camera presets and WASD walk-through</li>
+            <li>Showroom with guided tour and full screen</li>
           </ul>
         </div>
-        <figure><img src="img/frontal-3d.webp" width="1500" height="900" alt="Frontalansicht in 3D auf Kochinsel, Spüle und Hochschränke"></figure>
+        <figure><img src="img/frontal-3d.webp" width="1500" height="900" alt="Front view in 3D of cooking island, sink and tall cabinets"></figure>
       </div>
     </div>
   </section>
 
-  <section id="echte-kueche" class="alt">
+  <section id="real-kitchen" class="alt">
     <div class="wrap">
-      <h2>Eine echte Küche</h2>
-      <p class="sub">Die Planungs-Engine steckt heute auch im Hausplaner <a href="https://mupf-dev.github.io/Homemgmt/">Zuhause</a>. Dort ist damit eine echte Küche geplant – Bilder aus Zuhause.</p>
+      <h2>A real kitchen</h2>
+      <p class="sub">The planning engine now also powers the house planner in <a href="https://mupf-dev.github.io/Homemgmt/">Zuhause</a>, where a real kitchen was planned with it – images from Zuhause.</p>
       <div class="gallery">
-        <figure><img src="img/praxis-kueche.webp" alt="Blick in die Küche mit grifflosen Hochschränken und Steinarbeitsplatte"><figcaption><b>Küche</b> · grifflos, Durchgang in Schrankoptik, Unterbauspüle</figcaption></figure>
-        <figure><img src="img/praxis-eg-3d.webp" alt="Das Erdgeschoss als 3D-Schnitt mit Küchenzeile, Kochinsel und Treppe"><figcaption><b>Im Haus</b> · Küchenzeile und Kochinsel im offenen Erdgeschoss</figcaption></figure>
+        <figure><img src="img/praxis-kueche.webp" alt="View into the kitchen with handleless tall cabinets and stone worktop"><figcaption><b>Kitchen</b> · handleless, pass-through door disguised as a cabinet, undermount sink</figcaption></figure>
+        <figure><img src="img/praxis-eg-3d.webp" alt="The ground floor as a 3D cutaway with kitchen run, cooking island and stairs"><figcaption><b>In the house</b> · kitchen run and cooking island in the open-plan ground floor</figcaption></figure>
       </div>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <h2>Und außerdem</h2>
-      <p class="sub">Was es braucht, um eine Planung zu speichern, zu zeigen und zu betreiben.</p>
+      <h2>And also</h2>
+      <p class="sub">Everything you need to save, present and run your plans.</p>
       <div class="grid">
-        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><h4>Konten</h4><p>Planungen im Konto speichern, öffnen, kopieren. Das erste Konto wird Administrator.</p></div>
-        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><h4>Showroom-Link</h4><p>Die Küche zum Ansehen teilen – ohne Anmeldung, nur lesend, jederzeit deaktivierbar.</p></div>
-        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg><h4>Ohne Konto</h4><p>Funktioniert auch ohne Anmeldung: Speichern im Browser, Export und Import als JSON.</p></div>
-        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><h4>Benutzerverwaltung</h4><p>Registrierung ein/aus, Freigabepflicht für neue Konten, Konten sperren.</p></div>
-        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M6 7V5h12v2"/></svg><h4>Docker</h4><p>Ein Container mit Node 22, Express und SQLite – hinter jedem Reverse Proxy.</p></div>
-        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg><h4>Open Source</h4><p>AGPL-3.0: frei nutzbar und veränderbar, Änderungen bleiben offen.</p></div>
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><h4>Accounts</h4><p>Save, open and copy plans in your account. The first account becomes the administrator.</p></div>
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><h4>Showroom link</h4><p>Share the kitchen for viewing – no login, read-only, revocable at any time.</p></div>
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg><h4>No account needed</h4><p>Works without logging in too: saved in the browser, export and import as JSON.</p></div>
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><h4>User management</h4><p>Turn sign-up on or off, require approval for new accounts, lock accounts.</p></div>
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M6 7V5h12v2"/></svg><h4>Docker</h4><p>One container with Node 22, Express and SQLite – behind any reverse proxy.</p></div>
+        <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg><h4>Open source</h4><p>AGPL-3.0: free to use and modify, changes stay open.</p></div>
       </div>
     </div>
   </section>
@@ -269,22 +269,22 @@ footer a { color: var(--muted); }
   <section id="installation" class="alt">
     <div class="wrap">
       <h2>Installation</h2>
-      <p class="sub">Ein Node-Prozess, eine SQLite-Datei. Oder erst einmal die <a href="https://kuechenplaner.miefda.org/">Live-Demo</a> ausprobieren.</p>
+      <p class="sub">One Node process, one SQLite file. Or try the <a href="https://kuechenplaner.miefda.org/">live demo</a> first.</p>
       <div class="install">
         <div>
           <div class="tabs" role="tablist">
             <button role="tab" aria-selected="true" data-tab="docker">Docker</button>
             <button role="tab" aria-selected="false" data-tab="node">Node.js</button>
-            <button role="tab" aria-selected="false" data-tab="dev">Entwicklung</button>
+            <button role="tab" aria-selected="false" data-tab="dev">Development</button>
           </div>
           <div class="panel" data-panel="docker">
-<pre><button class="copy">Kopieren</button><code>git clone https://github.com/mupf-dev/kitchen-planner-3d.git
+<pre><button class="copy">Copy</button><code>git clone https://github.com/mupf-dev/kitchen-planner-3d.git
 cd kitchen-planner-3d
 docker compose up -d --build
 <span class="c"># → http://localhost:3010</span></code></pre>
           </div>
           <div class="panel" data-panel="node" hidden>
-<pre><button class="copy">Kopieren</button><code><span class="c"># benötigt Node.js ≥ 22.18</span>
+<pre><button class="copy">Copy</button><code><span class="c"># requires Node.js ≥ 22.18</span>
 git clone https://github.com/mupf-dev/kitchen-planner-3d.git
 cd kitchen-planner-3d
 npm install
@@ -292,43 +292,43 @@ npm run build &amp;&amp; npm start
 <span class="c"># → http://localhost:3001</span></code></pre>
           </div>
           <div class="panel" data-panel="dev" hidden>
-<pre><button class="copy">Kopieren</button><code>npm install
-npm run dev     <span class="c"># Vite :5173 + API-Server :3001</span>
-npm run build   <span class="c"># Typprüfung und Build nach dist/</span></code></pre>
+<pre><button class="copy">Copy</button><code>npm install
+npm run dev     <span class="c"># Vite :5173 + API server :3001</span>
+npm run build   <span class="c"># type check and build into dist/</span></code></pre>
           </div>
-          <div class="note"><b>Hinter HTTPS</b> die Variablen <code>TRUST_PROXY=1</code> und <code>COOKIE_SECURE=1</code> setzen. Daten liegen in <code>DATA_DIR</code> (Docker: <code>/data</code>).</div>
+          <div class="note"><b>Behind HTTPS</b>, set <code>TRUST_PROXY=1</code> and <code>COOKIE_SECURE=1</code>. Data lives in <code>DATA_DIR</code> (Docker: <code>/data</code>).</div>
         </div>
         <ol class="steps">
-          <li><b>Erstes Konto</b>Oben rechts „Anmelden“ → „Registrieren“. Das erste Konto wird Administrator.</li>
-          <li><b>Registrierung steuern</b>In der Benutzerverwaltung Registrierung ein- oder ausschalten und neue Konten freigeben.</li>
-          <li><b>Grafikkarte</b>Für schnelles Pathtracing den Browser auf die dedizierte GPU stellen – der Planer zeigt, wie.</li>
+          <li><b>First account</b>Top right „Anmelden“ (Log in) → „Registrieren“ (Sign up). The first account becomes the administrator.</li>
+          <li><b>Control sign-ups</b>In user management, turn sign-up on or off and approve new accounts.</li>
+          <li><b>Graphics card</b>For fast path tracing, switch your browser to the dedicated GPU – the planner shows you how.</li>
         </ol>
       </div>
     </div>
   </section>
 
-  <section id="anleitung">
+  <section id="guide">
     <div class="wrap">
-      <h2>Anleitung</h2>
-      <p class="sub">Die wichtigsten Schritte in Kürze.</p>
+      <h2>Guide</h2>
+      <p class="sub">The key steps at a glance. The user interface is currently in German; labels are given with their English meaning.</p>
       <div class="grid">
-        <div class="tile"><h4>1 · Raum anlegen</h4><p>Reiter <b>Raum</b>: Maße eingeben und <b>Wände erzeugen</b> – oder Wände zeichnen, Türen und Fenster setzen.</p></div>
-        <div class="tile"><h4>2 · Grundriss nachzeichnen</h4><p>Bild hochladen, mit <b>Maßstab</b> an einer bekannten Strecke kalibrieren und die Wände nachzeichnen.</p></div>
-        <div class="tile"><h4>3 · Schränke setzen</h4><p>Reiter <b>Katalog</b>: Element anklicken, in den Grundriss klicken. <code>R</code> dreht, <code>Alt</code> platziert frei.</p></div>
-        <div class="tile"><h4>4 · Oberflächen wählen</h4><p>Reiter <b>Materialien</b>: je Bereich ein Material, eigene Farbe oder Textur hochladen.</p></div>
-        <div class="tile"><h4>5 · Fotorealistisch</h4><p>Oben auf <b>3D</b>, dann <b>Fotorealistisch</b>. Das Bild verfeinert sich – mit <b>Bild</b> speichern.</p></div>
-        <div class="tile"><h4>6 · Teilen</h4><p>Anmelden, Planung speichern und einen <b>Showroom-Link</b> erzeugen – oder als JSON exportieren.</p></div>
+        <div class="tile"><h4>1 · Create the room</h4><p>Tab <b>Raum</b> (Room): enter dimensions and click <b>Wände erzeugen</b> (create walls) – or draw walls and place doors and windows.</p></div>
+        <div class="tile"><h4>2 · Trace a floor plan</h4><p>Upload an image, calibrate it with <b>Maßstab</b> (scale) using a known distance and trace the walls.</p></div>
+        <div class="tile"><h4>3 · Place cabinets</h4><p>Tab <b>Katalog</b> (Catalog): pick an element, click into the floor plan. <code>R</code> rotates, <code>Alt</code> places freely.</p></div>
+        <div class="tile"><h4>4 · Choose surfaces</h4><p>Tab <b>Materialien</b> (Materials): one material per area, or upload your own colour or texture.</p></div>
+        <div class="tile"><h4>5 · Photorealistic</h4><p>Switch to <b>3D</b> at the top, then <b>Fotorealistisch</b> (photorealistic). The image refines over time – save it with <b>Bild</b> (image).</p></div>
+        <div class="tile"><h4>6 · Share</h4><p>Log in, save the plan and create a <b>showroom link</b> – or export it as JSON.</p></div>
       </div>
-      <p style="margin-top:28px"><a class="btn primary" href="https://kuechenplaner.miefda.org/">Jetzt in der Live-Demo ausprobieren →</a></p>
-      <p class="demo-note">Die Live-Demo läuft auf einem privaten Server. Planungen ohne Anmeldung bleiben nur in deinem Browser.</p>
+      <p style="margin-top:28px"><a class="btn primary" href="https://kuechenplaner.miefda.org/">Try it now in the live demo →</a></p>
+      <p class="demo-note">The live demo runs on a private server. Plans made without logging in stay in your browser only.</p>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>Küchenplaner 3D · <a href="https://github.com/mupf-dev/kitchen-planner-3d">GitHub</a> · <a href="https://kuechenplaner.miefda.org/">Live-Demo</a> · Lizenz <a href="https://github.com/mupf-dev/kitchen-planner-3d/blob/main/LICENSE">AGPL-3.0</a> · Weiterentwickelt in <a href="https://mupf-dev.github.io/Homemgmt/">Zuhause</a></span>
-    <span>Texturen: <a href="https://polyhaven.com">Poly Haven</a> (CC0) · <a href="https://ambientcg.com">ambientCG</a> · 3D: <a href="https://threejs.org">three.js</a></span>
+    <span>Kitchen Planner 3D · <a href="https://github.com/mupf-dev/kitchen-planner-3d">GitHub</a> · <a href="https://kuechenplaner.miefda.org/">Live demo</a> · License <a href="https://github.com/mupf-dev/kitchen-planner-3d/blob/main/LICENSE">AGPL-3.0</a> · Continued in <a href="https://mupf-dev.github.io/Homemgmt/">Zuhause</a></span>
+    <span>Textures: <a href="https://polyhaven.com">Poly Haven</a> (CC0) · <a href="https://ambientcg.com">ambientCG</a> · 3D: <a href="https://threejs.org">three.js</a></span>
   </div>
 </footer>
 
@@ -343,7 +343,7 @@ document.querySelectorAll('.copy').forEach(function (b) {
   b.addEventListener('click', function () {
     var code = b.parentElement.querySelector('code').innerText.split('\n').filter(function (l) { return !/^\s*#/.test(l); })
       .map(function (l) { return l.replace(/\s+#.*$/, ''); }).join('\n').trim();
-    navigator.clipboard && navigator.clipboard.writeText(code).then(function () { b.textContent = 'Kopiert ✓'; setTimeout(function () { b.textContent = 'Kopieren'; }, 1600); });
+    navigator.clipboard && navigator.clipboard.writeText(code).then(function () { b.textContent = 'Copied ✓'; setTimeout(function () { b.textContent = 'Copy'; }, 1600); });
   });
 });
 </script>

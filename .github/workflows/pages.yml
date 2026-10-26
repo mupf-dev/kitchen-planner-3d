@@ -1,4 +1,4 @@
-# Veröffentlicht die Projekt-Website aus site/ auf GitHub Pages (https://mupf-dev.github.io/kitchen-planner-3d/)
+# Publishes the project website from site/ to GitHub Pages (https://mupf-dev.github.io/kitchen-planner-3d/)
 name: Website
 
 on:
