@@ -1,3 +1,4 @@
+import { t as tr } from './i18n';
 import type { Item, Opening, Project, Selection, Wall } from './types';
 import { getEntry } from './catalog';
 
@@ -47,7 +48,7 @@ function defaultProject(): Project {
 
   return {
     version: 1,
-    name: 'Meine Küche',
+    name: tr('Meine Küche'),
     walls: [w1, w2, w3, w4],
     openings,
     items,
@@ -169,7 +170,7 @@ class Store {
       p.walls = [];
       p.openings = [];
       p.items = [];
-      p.name = 'Neue Küche';
+      p.name = tr('Neue Küche');
     }
     this.replace(p);
   }

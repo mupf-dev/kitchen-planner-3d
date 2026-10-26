@@ -1,5 +1,6 @@
 // Anmeldung, „Meine Planungen“ und Benutzerverwaltung
 import { migrate, store } from './state';
+import { locale } from './i18n';
 import type { Project } from './types';
 
 export interface User {
@@ -60,7 +61,7 @@ async function api<T = any>(path: string, opts: { method?: string; body?: unknow
 
 const fmtDate = (s: string) => {
   const d = new Date(s.replace(' ', 'T') + 'Z');
-  return d.toLocaleString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  return d.toLocaleString(locale, { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
 };
 
 export class Account {

@@ -389,3 +389,4 @@ body.shared-view #exitShowroom { display: none; }
 .slot .slot-btns .btn.mini { margin-left: 0; }
 .mat-row .btn.mini { margin-left: 2px; }
 @media (max-width: 640px) { .adj-layout { grid-template-columns: 1fr; } }
+.lang-sel { width: auto; padding: 5px 6px; font-size: 12px; font-weight: 600; cursor: pointer; }

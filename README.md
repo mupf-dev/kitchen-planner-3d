@@ -26,8 +26,9 @@ Self-hosted, with user accounts and shareable showroom links.
 > covers the whole house and comes with inventory management, where every cabinet compartment is a storage location.
 > This repository contains the standalone kitchen planner (version 1.0.0).
 
-> [!IMPORTANT]
-> The user interface is currently in **German**. This guide gives the German labels together with their English meaning.
+> [!NOTE]
+> The user interface is available in **English and German**. It follows your browser language; switch it any time with
+> the **EN/DE** selector in the header or the URL parameter `?lang=en` / `?lang=de`.
 
 ## Features
 
@@ -75,6 +76,11 @@ Self-hosted, with user accounts and shareable showroom links.
 - **Photorealistic**: GPU path tracing that refines continuously; save as PNG
 - **Walk-through** with WASD and mouse, camera presets (overview, room corner, front, top)
 - **Showroom**: full-window 3D without toolbars, with guided tour and full screen
+
+### 🌐 Languages
+
+- **English and German** user interface, chosen from the browser language, switchable in the header (**EN/DE**) or via
+  `?lang=en` / `?lang=de`; server messages are translated too
 
 ### 👥 Accounts and sharing
 
@@ -126,19 +132,18 @@ npm run build && npm start     # → http://localhost:3001
 
 ## Guide
 
-1. **Create the room** – in the *Raum* (Room) tab, enter width, depth and height and click *Wände erzeugen* (create
-   walls), or draw them yourself with *Wand zeichnen* (draw wall). Alternatively upload a floor plan image, calibrate
-   it with *Maßstab* (scale) and trace it.
-2. **Doors and windows** – place them on a wall with the *Tür* (door) and *Fenster* (window) tools.
-3. **Place cabinets** – in the *Katalog* (Catalog) tab, click an element and then click into the floor plan. Cabinets
-   snap to walls and neighbours; `R` rotates, `Shift`+click places several, `Alt` places freely. Change the width with
-   the drag handles on the sides.
-4. **Choose surfaces** – in the *Materialien* (Materials) tab, pick a material per area (fronts, carcass, worktop,
-   handles, floor …). Individual elements can get different materials in the properties panel on the right.
-5. **View** – switch between *2D*, *Geteilt* (split) and *3D* at the top. In 3D, turn on *Fotorealistisch*
-   (photorealistic) and save with *Bild* (image), or use *Showroom* for presentations.
-6. **Save and share** – *Anmelden* (log in), save the plan to your account and create a showroom link. Without an
-   account: *Datei → Als Datei exportieren (.json)* (File → export as file).
+1. **Create the room** – in the *Room* tab, enter width, depth and height and click *Create walls*, or draw them
+   yourself with *Draw wall*. Alternatively upload a floor plan image, calibrate it with *Scale* and trace it.
+2. **Doors and windows** – place them on a wall with the *Door* and *Window* tools.
+3. **Place cabinets** – in the *Catalog* tab, click an element and then click into the floor plan. Cabinets snap to
+   walls and neighbours; `R` rotates, `Shift`+click places several, `Alt` places freely. Change the width with the drag
+   handles on the sides.
+4. **Choose surfaces** – in the *Materials* tab, pick a material per area (fronts, carcass, worktop, handles,
+   floor …). Individual elements can get different materials in the properties panel on the right.
+5. **View** – switch between *2D*, *Split* and *3D* at the top. In 3D, turn on *Photorealistic* and save with
+   *Image*, or use *Showroom* for presentations.
+6. **Save and share** – *Log in*, save the plan to your account and create a showroom link. Without an account:
+   *File → Export as file (.json)*.
 
 **Keyboard shortcuts:** `Del` delete · `R` rotate · `Ctrl`+`D` duplicate · `Ctrl`+`Z` undo · `Esc` exit tool ·
 `Alt` while dragging: place freely
@@ -172,6 +177,13 @@ npm run dev      # Vite (http://localhost:5173) and API server (port 3001) toget
 npm run build    # type check and build into dist/
 ```
 
+### Translations
+
+The UI is written in German in the source; `src/i18n/index.ts` translates all texts in the DOM (text nodes and
+`title`/`placeholder`/`alt`/`aria-label`) as well as native dialogs, using a dictionary keyed by the German text
+(`src/i18n/en.ts`). Keys containing `{}` are patterns for texts with variable parts. To add a language, add a
+dictionary and register it in `LANGS`/`DICTS`.
+
 ### Structure
 
 ```
@@ -182,6 +194,7 @@ src/materials.ts, procedural.ts  material library, procedural textures, custom t
 src/catalog.ts                element catalog
 src/state.ts                  project state, undo/redo, autosave, JSON export
 src/account.ts                account, saved plans, user management, showroom links
+src/i18n/                     translations (index.ts: translation layer, en.ts: English dictionary)
 server/index.ts               Express + node:sqlite: login, plans, sharing
 server/library.ts             online libraries (Poly Haven, ambientCG), import to the server
 site/                         project website (GitHub Pages) and screenshots

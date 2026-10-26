@@ -1,4 +1,5 @@
 import './style.css';
+import { initI18n, lang, LANGS, setLang, t, type Lang } from './i18n';
 import { store, uid } from './state';
 import { Plan2D, type Tool } from './plan2d';
 import { Scene3D } from './scene3d';
@@ -41,6 +42,7 @@ const ICON = {
 // ---------------------------------------------------------------------------
 // Grundgerüst
 
+initI18n();
 const app = $('#app');
 app.innerHTML = `
 <header>
@@ -63,6 +65,7 @@ app.innerHTML = `
       <button id="saveBtn">${ICON.save}Als Datei exportieren (.json)</button>
     </div>
   </div>
+  <select id="langSel" class="lang-sel" translate="no" title="Sprache / Language">${LANGS.map((l) => `<option value="${l.id}" ${l.id === lang ? 'selected' : ''}>${l.id.toUpperCase()}</option>`).join('')}</select>
   <div id="account" class="account"></div>
   <input type="file" id="openFile" accept=".json,application/json" hidden />
 </header>
@@ -384,6 +387,8 @@ lightPop.querySelectorAll<HTMLElement>('[data-preset]').forEach((b) =>
 store.subscribe(() => {
   if (!lightPop.hidden) syncLight();
 });
+
+$<HTMLSelectElement>('#langSel').addEventListener('change', (e) => setLang((e.target as HTMLSelectElement).value as Lang));
 
 // Undo / Redo
 $('#undo').addEventListener('click', () => store.undo());
@@ -1979,7 +1984,7 @@ if (shareToken) {
     .then((d) => {
       store.replace(d.data);
       $('#sharedTitle').textContent = d.name;
-      document.title = `${d.name} – Küchenplaner`;
+      document.title = t(`${d.name} – Küchenplaner`);
       view.setView('perspective');
     })
     .catch((e) => {

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0 – 2026-10-26
+
+**Languages**
+- The user interface is available in English and German; the language follows the browser and can be switched in the
+  header (EN/DE) or with `?lang=en` / `?lang=de`
+- Translation layer for all UI texts, native dialogs and server messages; dates use the selected locale
+- README, website and changelog in English
+
 ## 1.0.0 – 2026-10-03
 
 First release of the kitchen planner.
